@@ -137,4 +137,22 @@ template< class T >
 T& ArbolBinarioAVL<T>::maximo(){
   return this->raiz->maximo();
 }
+
+template <class T>
+typename ArbolBinarioAVL<T>::iterator ArbolBinarioAVL<T>::begin()
+{
+  NodoBinario<T> *curr = this->raiz;
+  if (curr != nullptr){
+    while (curr->hijoIzq != nullptr){
+      curr = curr->hijoIzq;
+    }
+  }
+  return iterator(curr, this);
+}
+
+template <class T>
+typename ArbolBinarioAVL<T>::iterator ArbolBinarioAVL<T>::end()
+{
+  return iterator(nullptr, this);
+}
 #endif

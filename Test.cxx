@@ -127,9 +127,11 @@ int main(int argc, char const *argv[]) {
   arbol.insertar(var19);
   arbol.insertar(var20);
   arbol.eliminar(var13);
-  arbol.preOrden();
+  arbol.inOrden();
   std::cout<<std::endl ;
-
-
+  for(ArbolBinarioAVL<int>::iterator it = arbol.begin() ; it != arbol.end() ; it++){
+    std::cout<<"\n DATO --> "<<(*it);
+  }
+    std::cout<<std::endl ;
   return 0;
 }

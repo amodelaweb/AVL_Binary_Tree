@@ -1,11 +1,22 @@
 #ifndef NODO_BINARIO_H
 #define NODO_BINARIO_H
 
+
 #include <iostream>
+
+template< class T >
+class bntree_iterator;
+
+template< class T >
+class ArbolBinarioAVL;
+
 template< class T >
 
 class NodoBinario{
+
 protected:
+  friend class bntree_iterator<T> ;
+  friend class ArbolBinarioAVL<T> ;
   T dato;
   NodoBinario<T> *hijoIzq ;
   NodoBinario<T> *hijoDer ;
@@ -33,6 +44,7 @@ public:
   T& maximo();
   NodoBinario<T>* obtenerHijoIzq();
   NodoBinario<T>* obtenerHijoDer();
+  NodoBinario<T>* obtenerPadre(NodoBinario* nodo) ;
   NodoBinario<T>* rotIzq();
   NodoBinario<T>* rotDer();
   bool balancear2(T& val , NodoBinario<T>*& root) ;

@@ -338,16 +338,16 @@ NodoBinario<T>* NodoBinario<T>::rotDer(){
 template< class T >
 void NodoBinario<T>::rotizqder(NodoBinario<T>*& root){
 
-          if(this->obtenerHijoIzq()->obtenerHijoDer() != nullptr){
-  NodoBinario<T>* n_padre = this->obtenerHijoIzq()->rotIzq();
+  if(this->obtenerHijoIzq()->obtenerHijoDer() != nullptr){
+    NodoBinario<T>* n_padre = this->obtenerHijoIzq()->rotIzq();
 
-  root->cambiarPadre(root ,n_padre , this->obtenerHijoIzq());
+    root->cambiarPadre(root ,n_padre , this->obtenerHijoIzq());
 
 
-  NodoBinario<T>* aux = n_padre ;
+    NodoBinario<T>* aux = n_padre ;
 
-  this->fijarHijoIzq(aux);
-}
+    this->fijarHijoIzq(aux);
+  }
 
   NodoBinario<T>* n_padre2 =this->rotDer();
 
@@ -358,17 +358,17 @@ void NodoBinario<T>::rotizqder(NodoBinario<T>*& root){
 template< class T >
 void NodoBinario<T>::rotderizq(NodoBinario<T>*& root){
 
-      if(this->obtenerHijoDer()->obtenerHijoIzq() != nullptr){
-  NodoBinario<T>* n_padre = this->obtenerHijoDer()->rotDer() ;
+  if(this->obtenerHijoDer()->obtenerHijoIzq() != nullptr){
+    NodoBinario<T>* n_padre = this->obtenerHijoDer()->rotDer() ;
 
-  root->cambiarPadre(root ,n_padre , this->obtenerHijoDer());
+    root->cambiarPadre(root ,n_padre , this->obtenerHijoDer());
 
 
 
-  NodoBinario<T>* aux = n_padre;
+    NodoBinario<T>* aux = n_padre;
 
-  this->fiJarHijoDer( aux );
-}
+    this->fiJarHijoDer( aux );
+  }
 
   NodoBinario<T>* n_padre2 =  this->rotIzq() ;
 
@@ -498,8 +498,8 @@ bool NodoBinario<T>::cambiarPadre(NodoBinario<T>*& root , NodoBinario<T>* n_padr
     }
     if(this->obtenerHijoDer() != nullptr){
       if(padre->obtenerDato() > this->obtenerDato() ){
-      return this->obtenerHijoDer()->cambiarPadre(root , n_padre , padre   );
-    }
+        return this->obtenerHijoDer()->cambiarPadre(root , n_padre , padre   );
+      }
     }
   }
   return false ;
@@ -513,7 +513,7 @@ bool NodoBinario<T>::balancear2(T& val , NodoBinario<T>*& root) {
   bool bandera = false ;
   if(this->obtenerDato() == val ){
 
-      bandera = true ;
+    bandera = true ;
 
   }
   if(bandera){
@@ -594,6 +594,20 @@ bool NodoBinario<T>::balancear2(T& val , NodoBinario<T>*& root) {
       return true ;
     }
     return false ;
+  }
+}
+template< class T >
+NodoBinario<T>* NodoBinario<T>::obtenerPadre(NodoBinario* nodo) {
+  if(this->hijoIzq == nodo || this->hijoDer == nodo){
+    return this ;
+  }else{
+    if(nodo->obtenerDato() > this->obtenerDato() && this->hijoDer != nullptr){
+      return this->hijoDer->obtenerPadre(nodo);
+    }else if(nodo->obtenerDato() < this->obtenerDato() && this->hijoIzq != nullptr){
+      return this->hijoIzq->obtenerPadre(nodo);
+    }else{
+      return nullptr ;
+    }
   }
 }
 #endif
